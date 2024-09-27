@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos - Universidade</title>
+    <button id="toggleTheme">Mudar Tema</button>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f3f3f3; /* Fundo claro */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            transition: background 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff9900; /* Laranja da Amazon */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff9900; /* Laranja da Amazon */
+            color: white;
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #ff9900; /* Laranja da Amazon */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e68a00; /* Tom mais escuro do laranja */
+        }
+
+        /* Tema escuro */
+        body.dark {
+            background: #121212; /* Fundo escuro */
+            color: #fff;
+        }
+
+        .container.dark {
+            background: #1f1f1f; /* Fundo da caixa */
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        h1.dark {
+            color: #00a1ff; /* Azul da Disney+ */
+        }
+
+        button.dark {
+            background-color: #00a1ff;
+        }
+
+        button.dark:hover {
+            background-color: #0081cc;
+        }
+        body.dark {
+            background: #001f3f; /* Azul escuro */
+            color: #fff;
+        }
+
+        .container.dark {
+            background: #003366; /* Azul mais claro */
+        }
+    </style>
+</head>
+<body class="light">
+    <div class="container">
+        <h1>Lista de Alunos Cadastrados</h1>
+        <button id="removeDuplicates">Remover Duplicados</button>
+        <table id="alunosTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Curso</th>
+                    <th>Emails</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As informações dos alunos serão inseridas aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Função para carregar a lista de alunos
+        function loadAlunos() {
+            const alunos = JSON.parse(localStorage.getItem('alunos')) || [];
+            const alunosTableBody = document.getElementById('alunosTable').getElementsByTagName('tbody')[0];
+
+            // Limpa a tabela antes de preenchê-la
+            alunosTableBody.innerHTML = '';
+
+            // Preenche a tabela com os dados dos alunos
+            alunos.forEach(aluno => {
+                const row = alunosTableBody.insertRow();
+                row.insertCell(0).textContent = aluno.nome;
+                row.insertCell(1).textContent = aluno.idade;
+                row.insertCell(2).textContent = aluno.curso;
+                row.insertCell(3).textContent = aluno.emails;
+            });
+        }
+
+        // Função para remover duplicados
+        document.getElementById('removeDuplicates').addEventListener('click', function() {
+            let alunos = JSON.parse(localStorage.getItem('alunos')) || [];
+            const uniqueAlunos = [];
+
+            const seen = new Set();
+            alunos.forEach(aluno => {
+                if (!seen.has(aluno.nome)) {
+                    seen.add(aluno.nome);
+                    uniqueAlunos.push(aluno);
+                }
+            });
+
+            // Atualiza o localStorage e recarrega a lista
+            localStorage.setItem('alunos', JSON.stringify(uniqueAlunos));
+            loadAlunos();
+        });
+
+        // Tema
+        document.getElementById('toggleTheme').addEventListener('click', function() {
+            const body = document.body;
+            const container = document.querySelector('.container');
+
+            body.classList.toggle('dark');
+            container.classList.toggle('dark');
+        });
+
+        // Carrega os alunos ao abrir a página
+        loadAlunos();
+    </script>
+</body>
+</html>

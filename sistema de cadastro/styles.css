@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f3f3f3; /* Fundo claro */
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff9900; /* Laranja da Amazon */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Efeito de foco */
+}
+
+input:focus {
+    border-color: #ff9900; /* Laranja da Amazon */
+    box-shadow: 0 0 5px rgba(255, 153, 0, 0.5); /* Efeito de sombra */
+    outline: none;
+}
+
+button {
+    padding: 15px;
+    background-color: #ff9900; /* Laranja da Amazon */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s; /* Efeito de hover */
+}
+
+button:hover {
+    background-color: #e68a00; /* Tom mais escuro do laranja */
+    transform: translateY(-2px); /* Efeito de leve elevação */
+}
+
+#alunosList {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #ff9900; /* Laranja da Amazon */
+    color: white;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ff9900; /* Laranja da Amazon */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s; /* Efeito de hover */
+}
+
+a:hover {
+    color: #e68a00; /* Tom mais escuro do laranja */
+}
+/* Tema claro */
+body.light {
+    background: #fff8e1; /* Amarelo claro */
+    color: #333;
+}
+
+.container.light {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1.light {
+    color: #ffb300; /* Amarelo mais forte */
+}
+
+input.light {
+    border: 1px solid #ddd;
+}
+
+button.light {
+    background-color: #ffb300; /* Amarelo mais forte */
+}
+
+/* Tema escuro */
+body.dark {
+    background: #001f3f; /* Azul escuro */
+    color: #fff;
+}
+
+.container.dark {
+    background: #003366; /* Azul mais claro */
+    box-shadow: 0 2px 15px rgba(255, 255, 255, 0.1);
+}
+
+h1.dark {
+    color: #00a1ff; /* Azul da Disney+ */
+}
+
+input.dark {
+    border: 1px solid #555; /* Borda mais clara */
+    background: #003366; /* Fundo do input */
+    color: #fff;
+}
+
+input.dark:focus {
+    border-color: #00a1ff; /* Borda azul ao focar */
+    box-shadow: 0 0 5px rgba(0, 161, 255, 0.5);
+}
+
+button.dark {
+    background-color: #00a1ff; /* Azul da Disney+ */
+}
+
+button.dark:hover {
+    background-color: #0081cc; /* Tom mais escuro do azul */
+}
+
+table.dark {
+    border-collapse: collapse;
+}
+
+th.dark, td.dark {
+    border: 1px solid #555; /* Borda mais clara */
+}
+
+th.dark {
+    background-color: #00a1ff; /* Azul da Disney+ */
+}
+
+a.dark {
+    color: #00a1ff; /* Azul da Disney+ */
+}
+
+a.dark:hover {
+    color: #0081cc; /* Tom mais escuro do azul */
+}

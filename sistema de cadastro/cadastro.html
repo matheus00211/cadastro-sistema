@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos - Universidade</title>
+    <button id="toggleTheme">Mudar Tema</button>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f3f3f3; /* Fundo claro */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            transition: background 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff9900; /* Laranja da Amazon */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff9900;
+            box-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+            outline: none;
+        }
+
+        button {
+            padding: 15px;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #e68a00;
+            transform: translateY(-2px);
+        }
+
+        /* Tema escuro */
+        body.dark {
+            background: #121212; /* Fundo escuro */
+            color: #fff;
+        }
+
+        .container.dark {
+            background: #1f1f1f; /* Fundo da caixa */
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        h1.dark {
+            color: #00a1ff; /* Azul da Disney+ */
+        }
+
+        input.dark {
+            background: #3a3a3a;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        button.dark {
+            background-color: #00a1ff;
+        }
+
+        button.dark:hover {
+            background-color: #0081cc;
+        }
+    </style>
+</head>
+<body class="light">
+    <div class="container">
+        <h1>Cadastro de Alunos</h1>
+        <form id="alunoForm">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="number" id="idade" placeholder="Idade" min="18" required>
+            <input type="text" id="curso" placeholder="Curso Desejado" required>
+            <input type="text" id="emails" placeholder="Emails (separados por vírgula)" required>
+            <button type="submit">Cadastrar Aluno</button>
+        </form>
+    </div>
+
+    <script>
+        // Array de alunos (inicialmente vazio)
+        let alunos = JSON.parse(localStorage.getItem('alunos')) || [];
+
+        // Função para cadastrar um novo aluno
+        document.getElementById('alunoForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio do formulário
+
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const curso = document.getElementById('curso').value;
+            const emails = document.getElementById('emails').value;
+
+            const novoAluno = { nome, idade, curso, emails };
+            alunos.push(novoAluno);
+
+            // Salva os alunos no localStorage
+            localStorage.setItem('alunos', JSON.stringify(alunos));
+
+            // Redireciona para a página de lista
+            window.open('lista_alunos.html', '_blank');
+        });
+
+        document.getElementById('toggleTheme').addEventListener('click', function() {
+            const body = document.body;
+            const container = document.querySelector('.container');
+            const inputs = document.querySelectorAll('input');
+            const buttons = document.querySelectorAll('button');
+            const headings = document.querySelector('h1');
+
+            body.classList.toggle('dark');
+            container.classList.toggle('dark');
+            headings.classList.toggle('dark');
+            inputs.forEach(input => input.classList.toggle('dark'));
+            buttons.forEach(button => button.classList.toggle('dark'));
+        });
+    </script>
+</body>
+</html>
